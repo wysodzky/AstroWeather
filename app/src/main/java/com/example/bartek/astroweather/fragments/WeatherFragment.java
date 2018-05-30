@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bartek.astroweather.AstroUpdate;
+import com.example.bartek.astroweather.Manager;
 import com.example.bartek.astroweather.R;
 import com.example.bartek.astroweather.data.Channel;
 import com.example.bartek.astroweather.data.Item;
@@ -27,7 +28,7 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
     private TextView temperatureTextView;
     private TextView conditionTextView;
     private TextView locationTextView;
-
+    Manager manager = Manager.getInstance();
 
 
     private YahooWeatherService service;
@@ -42,10 +43,10 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
         locationTextView = (TextView)view.findViewById(R.id.locationTextView);
 
         service = new YahooWeatherService(this);
-        dialog = new ProgressDialog(getActivity());
-        dialog.setMessage("Loading");
-        dialog.show();
 
+
+        manager = Manager.getInstance();
+        manager.registerForUpdates(this);
         service.refreshWeather(service.getLocation());
 
 
@@ -58,27 +59,28 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
 
     @Override
     public void onSettingsUpdate() {
-
+        service.refreshWeather(service.getLocation());
     }
 
     @Override
     public void serviceSuccess(Channel channel) {
-        dialog.hide();
 
         Item item = channel.getItem();
 
-        int resourceID = getResources().getIdentifier("drawable/icon_"+channel.getItem().getCondition().getCode(), null, getActivity().getPackageName());
-        @SuppressWarnings("depracation")
-        Drawable weatherIconDrawable = getResources().getDrawable(resourceID);
-        weatherIconImageView.setImageDrawable(weatherIconDrawable);
-        locationTextView.setText(service.getLocation());
-        temperatureTextView.setText(item.getCondition().getTemperature()+"\u00b0"+channel.getUnits().getTemperature());
-        conditionTextView.setText(item.getCondition().getDescription());
+        if(isAdded()) {
+            int resourceID = getResources().getIdentifier("drawable/icon_" + channel.getItem().getCondition().getCode(), null, getActivity().getPackageName());
+
+            @SuppressWarnings("depracation")
+            Drawable weatherIconDrawable = getResources().getDrawable(resourceID);
+            weatherIconImageView.setImageDrawable(weatherIconDrawable);
+            locationTextView.setText(service.getLocation());
+            temperatureTextView.setText(item.getCondition().getTemperature() + "\u00b0" + channel.getUnits().getTemperature());
+            conditionTextView.setText(item.getCondition().getDescription());
+        }
     }
 
     @Override
     public void serviceFailure(Exception exception) {
-        dialog.hide();
-        Toast.makeText(getActivity(),exception.getMessage(),Toast.LENGTH_LONG).show();
+        service.refreshWeather(service.getLocation());
     }
 }

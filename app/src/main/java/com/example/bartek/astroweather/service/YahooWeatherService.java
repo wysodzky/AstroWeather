@@ -1,5 +1,6 @@
 package com.example.bartek.astroweather.service;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -19,8 +20,10 @@ import java.net.URLConnection;
  */
 
 public class YahooWeatherService {
+
     private WeatherServiceCallback callback;
-    private String location="Lodz";
+    private static String location="Lodz";
+
     private Exception error;
     private String temperatureUnit = "C";
 
@@ -28,12 +31,18 @@ public class YahooWeatherService {
         this.callback = callback;
     }
 
+
+
     public String getTemperatureUnit() {
         return temperatureUnit;
     }
 
-    public String getLocation() {
+    public static String getLocation() {
         return location;
+    }
+
+    public static void setLocation(String l){
+        location = l;
     }
 
     public void refreshWeather(final String l){

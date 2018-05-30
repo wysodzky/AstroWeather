@@ -2,17 +2,14 @@ package com.example.bartek.astroweather;
 
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
-import android.os.Handler;
-import android.widget.Toast;
 
-import java.sql.Time;
+
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+
 
 
 /**
@@ -27,11 +24,12 @@ public class Manager {
 
     private AstroCalculator astroCalculator;
     private AstroCalculator.Location location;
+
     private AstroDateTime astroDateTime;
     
     private Runnable updateAstro;
 
-    private long timeInterval = 1000*60;
+    private static long timeInterval = 1000*60;
     final android.os.Handler handler = new android.os.Handler();
     public Manager(){
 
@@ -91,7 +89,7 @@ public class Manager {
     }
 
     public void setTimeInterval(long time){
-        this.timeInterval = time;
+        timeInterval = time;
     }
 
     public long getTimeInterval() {

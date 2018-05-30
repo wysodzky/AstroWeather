@@ -1,5 +1,6 @@
 package com.example.bartek.astroweather;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astrocalculator.AstroCalculator;
+import com.example.bartek.astroweather.service.YahooWeatherService;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -28,9 +30,11 @@ public class SettingsActivity extends AppCompatActivity {
     private Manager manager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstaneState){
         super.onCreate(savedInstaneState);
+
         setContentView(R.layout.activity_settings);
         manager = Manager.getInstance();
         initSpinner();
@@ -110,17 +114,22 @@ public class SettingsActivity extends AppCompatActivity {
         newLatitude.setText(String.valueOf(manager.getLocation().getLatitude()));
         newLongitude.setText(String.valueOf(manager.getLocation().getLongitude()));
         location = (EditText)findViewById(R.id.newLocation);
+        location.setText(String.valueOf(YahooWeatherService.getLocation()));
     }
 
 
     public void saveSettings(View view){
         try{
+
             double nLatitude = Double.parseDouble(newLatitude.getText().toString());
             double nLongitude = Double.parseDouble(newLongitude.getText().toString());
 
             if((nLatitude > 90 || nLatitude < -90) || (nLongitude < 0 || nLatitude > 180)){
                 throw new Exception();
             }
+
+
+            YahooWeatherService.setLocation(location.getText().toString());
             manager.setLocation(new AstroCalculator.Location(nLatitude,nLongitude));
             manager.changeCoordinates();
             Toast.makeText(SettingsActivity.this,"Coordinates changed",Toast.LENGTH_SHORT).show();
