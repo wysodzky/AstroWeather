@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fontLand">24sp</dimen>
+    <dimen name="fontSettingsLand">50sp</dimen>
+</resources>

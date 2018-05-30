@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.bartek.astroweather.fragments.TimeFragment"
+    android:background="@color/colorPrimary">
+
+    <LinearLayout
+        android:paddingTop="4sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextClock
+            android:id="@+id/textClock"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="hh:mm:ss aa"
+            android:format24Hour="kk:mm:ss"
+            />
+    </LinearLayout>
+
+</FrameLayout>
