@@ -1,5 +1,7 @@
 package com.example.bartek.astroweather.data;
 
+import android.content.Context;
+
 import org.json.JSONObject;
 
 /**
@@ -9,6 +11,9 @@ import org.json.JSONObject;
 public class Channel implements JSONPopulator {
     private Item item;
     private Units units;
+    private Atmosphere atmosphere;
+    private Wind wind;
+    private Coordinates coordinates;
 
     public Item getItem() {
         return item;
@@ -16,6 +21,18 @@ public class Channel implements JSONPopulator {
 
     public Units getUnits() {
         return units;
+    }
+
+    public Atmosphere getAtmosphere() {
+        return atmosphere;
+    }
+
+    public Wind getWind() {
+        return wind;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
     @Override
@@ -26,5 +43,13 @@ public class Channel implements JSONPopulator {
         item = new Item();
         item.populate(data.optJSONObject("item"));
 
+        atmosphere = new Atmosphere();
+        atmosphere.populate(data.optJSONObject("atmosphere"));
+
+        wind = new Wind();
+        wind.populate(data.optJSONObject("wind"));
+
+        coordinates = new Coordinates();
+        coordinates.populate(data.optJSONObject("item"));
     }
 }

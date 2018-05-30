@@ -28,11 +28,26 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
     private TextView temperatureTextView;
     private TextView conditionTextView;
     private TextView locationTextView;
+
     Manager manager = Manager.getInstance();
 
 
+    private TextView humidityTextView;
+    private TextView pressureTextView;
+    private TextView visibilityTextView;
+
+
+    private TextView speedTextView;
+    private TextView chillTextView;
+    private TextView directionTextView;
+
+
+    private TextView latitudeTextView;
+    private TextView longitudeTextView;
+
+
+
     private YahooWeatherService service;
-    private ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -41,6 +56,18 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
         temperatureTextView = (TextView)view.findViewById(R.id.temperatureTextView);
         conditionTextView = (TextView)view.findViewById(R.id.conditionTextView);
         locationTextView = (TextView)view.findViewById(R.id.locationTextView);
+
+        humidityTextView = (TextView)view.findViewById(R.id.humidity);
+        pressureTextView = (TextView)view.findViewById(R.id.pressure);
+        visibilityTextView = (TextView)view.findViewById(R.id.visibility);
+
+        speedTextView = (TextView)view.findViewById(R.id.speed);
+        chillTextView = (TextView)view.findViewById(R.id.chill);
+        directionTextView = (TextView)view.findViewById(R.id.direction);
+
+        longitudeTextView = (TextView)view.findViewById(R.id.longitude);
+        latitudeTextView = (TextView)view.findViewById(R.id.latitude);
+
 
         service = new YahooWeatherService(this);
 
@@ -76,6 +103,19 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
             locationTextView.setText(service.getLocation());
             temperatureTextView.setText(item.getCondition().getTemperature() + "\u00b0" + channel.getUnits().getTemperature());
             conditionTextView.setText(item.getCondition().getDescription());
+
+            pressureTextView.setText(channel.getAtmosphere().getPressure());
+            humidityTextView.setText(channel.getAtmosphere().getHumidity());
+            visibilityTextView.setText(channel.getAtmosphere().getVisibility());
+
+            speedTextView.setText(channel.getWind().getSpeed());
+            chillTextView.setText(channel.getWind().getChill());
+            directionTextView.setText(channel.getWind().getDirection());
+
+            longitudeTextView.setText(channel.getCoordinates().getLongitude());
+            latitudeTextView.setText(channel.getCoordinates().getLatitude());
+
+
         }
     }
 
