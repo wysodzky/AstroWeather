@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Sun"));
         tabLayout.addTab(tabLayout.newTab().setText("Moon"));
         tabLayout.addTab(tabLayout.newTab().setText("Weather"));
+        tabLayout.addTab(tabLayout.newTab().setText("Forecast"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 

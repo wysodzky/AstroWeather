@@ -3,6 +3,7 @@ package com.example.bartek.astroweather;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.example.bartek.astroweather.fragments.ForecastFragment;
 import com.example.bartek.astroweather.fragments.MoonFragment;
 import com.example.bartek.astroweather.fragments.SunFragment;
 import com.example.bartek.astroweather.fragments.WeatherFragment;
@@ -31,6 +32,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
             case 2:
                 WeatherFragment weatherFragment = new WeatherFragment();
                 return weatherFragment;
+            case 3:
+                ForecastFragment forecastFragment = new ForecastFragment();
+                return forecastFragment;
             default:
                 return null;
         }
