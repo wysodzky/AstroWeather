@@ -26,20 +26,13 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
 
-    <TextView
-        android:id="@+id/temperatureLowTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/temperatureHighTextView"
-        android:layout_centerHorizontal="true"
-        android:text="@string/temperature"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 
     <TextView
         android:id="@+id/conditionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/temperatureLowTextView"
+        android:layout_below="@+id/temperatureHighTextView"
         android:layout_centerHorizontal="true"
         android:text="@string/condition"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -79,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="DAY1"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textAlignment="center"/>
             <TextView
                 android:id="@+id/hTemp_1"
                 android:layout_width="match_parent"
@@ -87,6 +81,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="hTemp1"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
             <TextView
@@ -96,6 +91,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text="lTemp1"
                 android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
 
@@ -121,7 +117,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="DAY2"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/hTemp_2"
@@ -129,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="hTemp2"
-
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
             <TextView
@@ -138,6 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="lTemp2"
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
 
@@ -162,7 +162,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="DAY3"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/hTemp_3"
@@ -170,7 +171,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="hTemp3"
-
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
             <TextView
@@ -179,6 +181,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="lTemp3"
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
 
@@ -203,7 +207,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="DAY4"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/hTemp_4"
@@ -211,7 +216,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="hTemp4"
-
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
             <TextView
@@ -220,6 +226,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="lTemp4"
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
 
@@ -231,6 +239,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1"
+
             android:weightSum="4">
 
             <ImageView
@@ -239,13 +248,14 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_na"
                 android:layout_weight="1"/>
+
             <TextView
                 android:id="@+id/dayLabel_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_weight="1"
                 android:text="DAY5"
-                android:layout_weight="1"/>
+                android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/hTemp_5"
@@ -253,7 +263,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="hTemp5"
-
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
             <TextView
@@ -262,6 +273,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="lTemp5"
+                android:layout_weight="1"
+                android:textAlignment="center"
                 />
 
 
