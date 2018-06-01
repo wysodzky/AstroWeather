@@ -67,7 +67,7 @@ public class SunFragment extends Fragment implements AstroUpdate {
 
         twilightMorning.setText(String.format("%02d",astroCalculator.getSunInfo().getTwilightMorning().getHour())+ ":" + String.format("%02d",astroCalculator.getSunInfo().getTwilightMorning().getMinute()));
         twilightEvening.setText(String.format("%02d",astroCalculator.getSunInfo().getTwilightEvening().getHour()) + ":" + String.format("%02d",astroCalculator.getSunInfo().getTwilightEvening().getMinute()));
-        Toast.makeText(getActivity(), "Data updated", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
