@@ -2,4 +2,5 @@
 <resources>
     <dimen name="fontSize">18sp</dimen>
     <dimen name="fontSettings">20sp</dimen>
+    <dimen name="fontSizeSmaller">15sp</dimen>
 </resources>
