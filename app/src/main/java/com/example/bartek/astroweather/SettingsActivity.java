@@ -1,7 +1,9 @@
 package com.example.bartek.astroweather;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,11 +14,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astrocalculator.AstroCalculator;
+import com.example.bartek.astroweather.adapter.LocationSpinnerAdapter;
+import com.example.bartek.astroweather.data.FavouriteLocation;
 import com.example.bartek.astroweather.service.YahooWeatherService;
 
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
 
 /**
  * Created by Bartek on 2018-04-24.
@@ -29,16 +37,27 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText location;
     private Manager manager;
 
+    private Spinner locationSpinner;
+    private Realm realm;
+    private LocationSpinnerAdapter adapter;
+    private List<FavouriteLocation> listLocations = new ArrayList<>();
+
+    private YahooWeatherService weatherService;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstaneState){
         super.onCreate(savedInstaneState);
-
+        Realm.init(this);
+        realm = Realm.getDefaultInstance();
         setContentView(R.layout.activity_settings);
         manager = Manager.getInstance();
+
         initSpinner();
         initValues();
+        initSpinnerLocation();
+
 
     }
 
@@ -106,15 +125,48 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+
+    void initSpinnerLocation(){
+
+        refreshDataFromDatabase();
+        adapter = new LocationSpinnerAdapter(this,android.R.layout.simple_spinner_item,listLocations);
+        locationSpinner.setAdapter(adapter);
+        locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                FavouriteLocation favouriteLocation = adapter.getItem(i);
+                location.setText(favouriteLocation.getLocation());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    void refreshDataFromDatabase(){
+        RealmQuery query = realm.where(FavouriteLocation.class);
+        RealmResults results = query.findAll();
+        listLocations = new ArrayList<>();
+        for(int i=0;i<results.size();i++){
+            FavouriteLocation item = (FavouriteLocation) results.get(i);
+            listLocations.add(item);
+        }
+    }
+
     private void initValues(){
 
 
         newLatitude = (EditText)findViewById(R.id.newLatitude);
+
         newLongitude = (EditText)findViewById(R.id.newLogitude);
         newLatitude.setText(String.valueOf(manager.getLocation().getLatitude()));
         newLongitude.setText(String.valueOf(manager.getLocation().getLongitude()));
         location = (EditText)findViewById(R.id.newLocation);
         location.setText(String.valueOf(YahooWeatherService.getLocation()));
+        locationSpinner = (Spinner)findViewById(R.id.citySpinner);
+
     }
 
 
@@ -138,5 +190,28 @@ public class SettingsActivity extends AppCompatActivity {
         }catch (Exception ParseException){
             Toast.makeText(SettingsActivity.this,"Incorrect Data",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void addLocation(View view){
+        final FavouriteLocation favouriteLocation = new FavouriteLocation(location.getText().toString());
+
+        if(adapter.checkIfExists(favouriteLocation.getLocation())){
+            Toast.makeText(this,"This location is in database",Toast.LENGTH_SHORT).show();
+        }else {
+
+                            realm.beginTransaction();
+                            FavouriteLocation itemInDb = realm.createObject(FavouriteLocation.class);
+                            itemInDb.setLocation(favouriteLocation.getLocation());
+                            realm.commitTransaction();
+                            showToastAdded(favouriteLocation);
+
+                            initSpinnerLocation();
+
+
+        }
+    }
+
+    void showToastAdded(FavouriteLocation favouriteLocation){
+        Toast.makeText(this, "Added Location " + favouriteLocation.getLocation(), Toast.LENGTH_SHORT).show();
     }
 }
