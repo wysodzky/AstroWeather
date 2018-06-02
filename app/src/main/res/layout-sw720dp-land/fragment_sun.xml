@@ -31,6 +31,7 @@
             android:gravity="end"
             android:layout_weight="1"
             android:textSize="@dimen/fontLand"
+
             />
 
     </LinearLayout>
@@ -162,7 +163,8 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontLand" />
+            android:textSize="@dimen/fontLand"
+            />
 
     </LinearLayout>
 

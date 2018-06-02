@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/temperature"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="@dimen/fontSettingsLand"/>
+        />
 
     <TextView
         android:id="@+id/conditionTextView"
@@ -33,8 +33,7 @@
         android:layout_below="@+id/temperatureTextView"
         android:layout_centerHorizontal="true"
         android:text="@string/condition"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/fontSettingsLand"/>
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
     <TextView
@@ -45,8 +44,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/location"
         android:id="@+id/locationTextView"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="@dimen/fontLand"/>
+        android:textAppearance="?android:attr/textAppearanceMedium" />
     <LinearLayout
         android:layout_below="@+id/locationTextView"
         android:layout_width="match_parent"

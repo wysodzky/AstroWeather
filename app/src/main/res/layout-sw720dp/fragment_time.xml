@@ -15,7 +15,7 @@
 
         <TextClock
             android:id="@+id/textClock"
-            android:textSize="20sp"
+            android:textSize="@dimen/fontLand"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -37,7 +37,7 @@
         android:layout_centerHorizontal="true"
         android:text="@string/condition"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="@dimen/fontLand"/>
+        android:textSize="@dimen/fontLand" />
 
 
     <TextView
@@ -146,6 +146,7 @@
                 android:text="lTemp2"
                 android:layout_weight="1"
                 android:textAlignment="center"
+                android:textSize="@dimen/fontLand"
                 />
 
 

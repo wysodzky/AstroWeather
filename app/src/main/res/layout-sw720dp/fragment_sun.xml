@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Longitude"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
         <TextView
             android:id="@+id/longitude"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"
+            android:textSize="@dimen/fontLand"
 
             />
 
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:text="Latitude"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
         <TextView
             android:id="@+id/latitude"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"
+            android:textSize="@dimen/fontLand"
             />
 
     </LinearLayout>
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="Azimuth Rise"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
         <TextView
             android:id="@+id/azimuthRise"
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"
+            android:textSize="@dimen/fontLand"
             />
 
     </LinearLayout>
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Sunrise"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
         <TextView
             android:id="@+id/sunrise"
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
 
     </LinearLayout>
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:text="Azimuth Set"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
         <TextView
             android:id="@+id/azimuthSet"
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
     </LinearLayout>
 
@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:text="Sunset"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
         <TextView
             android:id="@+id/sunset"
@@ -163,7 +163,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"
+            android:textSize="@dimen/fontLand"
             />
 
     </LinearLayout>
@@ -181,7 +181,7 @@
             android:layout_height="wrap_content"
             android:text="Twilight Morning"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
         <TextView
             android:id="@+id/twilightMorning"
@@ -189,7 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="end"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
 
     </LinearLayout>
@@ -205,14 +205,14 @@
             android:layout_height="wrap_content"
             android:text="Twilight Evening"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
         <TextView
             android:id="@+id/twilightEvening"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="end"
             android:layout_weight="1"
-            android:textSize="@dimen/fontSize"/>
+            android:textSize="@dimen/fontLand"/>
 
     </LinearLayout>
 
