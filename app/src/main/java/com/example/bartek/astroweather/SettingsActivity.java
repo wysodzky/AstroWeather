@@ -38,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     private Manager manager;
 
     private Spinner locationSpinner;
+    private Spinner unitSpinner;
     private Realm realm;
     private LocationSpinnerAdapter adapter;
     private List<FavouriteLocation> listLocations = new ArrayList<>();
@@ -57,6 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
         initSpinner();
         initValues();
         initSpinnerLocation();
+        initSpinnerUnit();
 
 
     }
@@ -68,6 +70,14 @@ public class SettingsActivity extends AppCompatActivity {
             intervalNames.add(value.name());
         }
         return intervalNames;
+    }
+
+    List<String> getUnitNames(){
+        List<String> unitNames= new ArrayList<>();
+        for(UnitValues value : UnitValues.values()){
+            unitNames.add(value.name());
+        }
+        return unitNames;
     }
 
     private void setDefaultSpinner(){
@@ -85,6 +95,40 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
+    private void setDefaultUnitSpinner(){
+        if(YahooWeatherService.getTemperatureUnit().equals("C")){
+            unitSpinner.setSelection(0);
+        }else if(YahooWeatherService.getTemperatureUnit().equals("F")){
+            unitSpinner.setSelection(1);
+        }
+    }
+
+
+    private void initSpinnerUnit(){
+        unitSpinner = (Spinner)findViewById(R.id.unitSpinner);
+        ArrayAdapter adapter = new ArrayAdapter(this,R.layout.simple_spinner_item,getUnitNames());
+        unitSpinner.setAdapter(adapter);
+        setDefaultUnitSpinner();
+        unitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch((int) l){
+                    case 0:
+                        YahooWeatherService.setTemperatureUnit("C");
+                        break;
+                    case 1:
+                        YahooWeatherService.setTemperatureUnit("F");
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+    }
 
 
 
@@ -115,7 +159,6 @@ public class SettingsActivity extends AppCompatActivity {
                         manager.setTimeInterval(15*1000*60);
                         break;
                 }
-                Toast.makeText(SettingsActivity.this,"Time interval changed",Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -184,7 +227,7 @@ public class SettingsActivity extends AppCompatActivity {
             YahooWeatherService.setLocation(location.getText().toString());
             manager.setLocation(new AstroCalculator.Location(nLatitude,nLongitude));
             manager.changeCoordinates();
-            Toast.makeText(SettingsActivity.this,"Coordinates changed",Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingsActivity.this,"Settings changed",Toast.LENGTH_SHORT).show();
 
 
         }catch (Exception ParseException){

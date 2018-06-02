@@ -25,15 +25,14 @@
                 android:layout_weight="1"
                 android:padding="3dip"
                 android:text="Refresh Time"
-                android:textSize="@dimen/fontSettingsLand"/>
+                android:textSize="@dimen/fontSettings"/>
 
             <Spinner
                 android:id="@+id/refresh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="end"
-                />
+                android:gravity="end" />
 
 
         </LinearLayout>
@@ -50,7 +49,7 @@
                 android:padding="3dip"
                 android:text="Longitude"
                 android:layout_weight="1"
-                android:textSize="@dimen/fontSettingsLand"/>
+                android:textSize="@dimen/fontSettings"/>
             <EditText
                 android:id="@+id/newLogitude"
                 android:gravity="end"
@@ -58,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:padding="5sp"
                 android:layout_weight="1"
-                android:textSize="@dimen/fontSettingsLand"/>
+                android:textSize="@dimen/fontSettings"/>
 
 
         </LinearLayout>
@@ -76,7 +75,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Latitude"
-                android:textSize="@dimen/fontSettingsLand"
+                android:textSize="@dimen/fontSettings"
+
                 />
 
             <EditText
@@ -86,7 +86,93 @@
                 android:layout_height="wrap_content"
                 android:padding="5sp"
                 android:layout_weight="1"
-                android:textSize="@dimen/fontSettingsLand"/>
+                android:textSize="@dimen/fontSettings"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Localization"
+                android:textSize="@dimen/fontSettings"
+
+                />
+
+            <EditText
+                android:id="@+id/newLocation"
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:layout_weight="1"
+                android:textSize="@dimen/fontSettings"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="add"
+                android:onClick="addLocation"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Select city"
+                android:textSize="@dimen/fontSettings"/>
+
+            <Spinner
+                android:id="@+id/citySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end" />
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="3dip"
+                android:text="Select Unit"
+                android:textSize="@dimen/fontSettings"/>
+
+            <Spinner
+                android:id="@+id/unitSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end" />
+
+
 
 
         </LinearLayout>
@@ -101,7 +187,7 @@
             android:layout_gravity="center_horizontal"
             android:onClick="saveSettings"
             android:text="Save"
-            android:textSize="@dimen/fontSettingsLand"/>
+            android:textSize="@dimen/fontSettings"/>
 
 
     </LinearLayout>

@@ -25,7 +25,7 @@ public class YahooWeatherService {
     private static String location="Lodz";
 
     private Exception error;
-    private String temperatureUnit = "C";
+    private static String temperatureUnit = "C";
 
     public YahooWeatherService(WeatherServiceCallback callback) {
         this.callback = callback;
@@ -33,8 +33,13 @@ public class YahooWeatherService {
 
 
 
-    public String getTemperatureUnit() {
+    public static String getTemperatureUnit() {
         return temperatureUnit;
+
+    }
+
+    public static void setTemperatureUnit(String temperatureUnit) {
+        YahooWeatherService.temperatureUnit = temperatureUnit;
     }
 
     public static String getLocation() {

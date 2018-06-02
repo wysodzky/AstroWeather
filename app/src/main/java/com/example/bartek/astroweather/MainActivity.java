@@ -68,13 +68,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(getResources().getBoolean(R.bool.isTablet)){
+
             configureToolbar();
-        }else {
+
             configureToolbar();
             configureTabLayout();
             configurePager();
-        }
+
     }
 
     @Override
