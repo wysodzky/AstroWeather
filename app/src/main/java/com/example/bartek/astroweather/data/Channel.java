@@ -14,7 +14,12 @@ public class Channel implements JSONPopulator {
     private Units units;
     private Atmosphere atmosphere;
     private Wind wind;
+    private Location location;
 
+
+    public Location getLocation() {
+        return location;
+    }
 
     public Item getItem() {
         return item;
@@ -48,6 +53,9 @@ public class Channel implements JSONPopulator {
         wind = new Wind();
         wind.populate(data.optJSONObject("wind"));
 
+        location = new Location();
+        location.populate(data.optJSONObject("location"));
+
 
     }
 
@@ -60,6 +68,7 @@ public class Channel implements JSONPopulator {
             data.put("wind",wind.toJSON());
             data.put("units",units.toJSON());
             data.put("item",item.toJSON());
+            data.put("location",location.toJSON());
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -105,7 +105,7 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
             @SuppressWarnings("depracation")
             Drawable weatherIconDrawable = getResources().getDrawable(resourceID);
             weatherIconImageView.setImageDrawable(weatherIconDrawable);
-            locationTextView.setText(service.getLocation());
+            locationTextView.setText(channel.getLocation().getCity());
             temperatureTextView.setText(item.getCondition().getTemperature() + "\u00b0" + channel.getUnits().getTemperature());
             conditionTextView.setText(item.getCondition().getDescription());
 

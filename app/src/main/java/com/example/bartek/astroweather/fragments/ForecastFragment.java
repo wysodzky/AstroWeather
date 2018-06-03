@@ -151,7 +151,7 @@ public class ForecastFragment extends Fragment implements AstroUpdate,WeatherSer
             forecastIconImageView.setImageResource(weatherIconId);
             temperatureHighTextView.setText(item.getCondition().getTemperature() + unitValue + units.getTemperature());
             conditionTextView.setText(item.getCondition().getDescription());
-            locationTextView.setText(service.getLocation());
+            locationTextView.setText(channel.getLocation().getCity());
 
 
 
