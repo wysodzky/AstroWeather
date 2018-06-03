@@ -15,6 +15,7 @@ import com.example.bartek.astroweather.data.Channel;
 import com.example.bartek.astroweather.data.Condition;
 import com.example.bartek.astroweather.data.Item;
 import com.example.bartek.astroweather.data.Units;
+import com.example.bartek.astroweather.service.WeatherCacheService;
 import com.example.bartek.astroweather.service.WeatherServiceCallback;
 import com.example.bartek.astroweather.service.YahooWeatherService;
 
@@ -25,6 +26,7 @@ import com.example.bartek.astroweather.service.YahooWeatherService;
 public class ForecastFragment extends Fragment implements AstroUpdate,WeatherServiceCallback {
 
      private String unitValue = "\u00b0";
+    private WeatherCacheService weatherCacheService;
 
     //main weather
     private ImageView forecastIconImageView;
@@ -125,6 +127,7 @@ public class ForecastFragment extends Fragment implements AstroUpdate,WeatherSer
 
         service = new YahooWeatherService(this);
         manager = Manager.getInstance();
+        weatherCacheService = new WeatherCacheService(getActivity());
         manager.registerForUpdates(this);
         service.refreshWeather(service.getLocation());
 
@@ -184,12 +187,12 @@ public class ForecastFragment extends Fragment implements AstroUpdate,WeatherSer
             hTemp_5.setText(forecast[5].getHighTemperature() + unitValue + units.getTemperature());
             lTemp_5.setText(forecast[5].getLowTemperature() + unitValue + units.getTemperature());
             dayLabel_5.setText(forecast[5].getDay());
-
+            weatherCacheService.save(channel);
         }
     }
 
     @Override
     public void serviceFailure(Exception exception) {
-        service.refreshWeather(service.getLocation());
+        weatherCacheService.load(this);
     }
 }

@@ -19,6 +19,7 @@ import com.example.bartek.astroweather.Manager;
 import com.example.bartek.astroweather.R;
 import com.example.bartek.astroweather.data.Channel;
 import com.example.bartek.astroweather.data.Item;
+import com.example.bartek.astroweather.service.WeatherCacheService;
 import com.example.bartek.astroweather.service.WeatherServiceCallback;
 import com.example.bartek.astroweather.service.YahooWeatherService;
 
@@ -46,6 +47,8 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
     private TextView longitudeTextView;
 
 
+    private WeatherCacheService weatherCacheService;
+
 
     private YahooWeatherService service;
 
@@ -70,6 +73,8 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
 
 
         service = new YahooWeatherService(this);
+
+        weatherCacheService = new WeatherCacheService(getActivity());
 
 
         manager = Manager.getInstance();
@@ -112,15 +117,15 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
             chillTextView.setText(channel.getWind().getChill());
             directionTextView.setText(channel.getWind().getDirection());
 
-            longitudeTextView.setText(channel.getCoordinates().getLongitude());
-            latitudeTextView.setText(channel.getCoordinates().getLatitude());
+            longitudeTextView.setText(channel.getItem().getLongitude());
+            latitudeTextView.setText(channel.getItem().getLatitude());
 
-
+            weatherCacheService.save(channel);
         }
     }
 
     @Override
     public void serviceFailure(Exception exception) {
-        service.refreshWeather(service.getLocation());
+        weatherCacheService.load(this);
     }
 }

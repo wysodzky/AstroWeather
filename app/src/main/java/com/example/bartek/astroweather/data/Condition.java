@@ -1,5 +1,6 @@
 package com.example.bartek.astroweather.data;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -48,5 +49,23 @@ public class Condition implements JSONPopulator {
         lowTemperature = data.optInt("low");
         day = data.optString("day");
 
+    }
+
+    @Override
+    public JSONObject toJSON(){
+        JSONObject data = new JSONObject();
+
+        try {
+            data.put("code",code);
+            data.put("temp",temperature);
+            data.put("text",description);
+            data.put("high",highTemperature);
+            data.put("low",lowTemperature);
+            data.put("day",day);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return data;
     }
 }

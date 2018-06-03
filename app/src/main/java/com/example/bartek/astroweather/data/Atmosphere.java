@@ -1,5 +1,6 @@
 package com.example.bartek.astroweather.data;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -30,5 +31,20 @@ public class Atmosphere implements JSONPopulator {
         pressure = data.optString("pressure");
         visibility = data.optString("visibility");
 
+    }
+
+    @Override
+    public JSONObject toJSON(){
+        JSONObject data = new JSONObject();
+
+        try {
+            data.put("humidity",humidity);
+            data.put("pressure",pressure);
+            data.put("visibility",visibility);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return data;
     }
 }

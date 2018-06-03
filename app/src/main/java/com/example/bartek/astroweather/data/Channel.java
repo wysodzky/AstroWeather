@@ -2,6 +2,7 @@ package com.example.bartek.astroweather.data;
 
 import android.content.Context;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -13,7 +14,7 @@ public class Channel implements JSONPopulator {
     private Units units;
     private Atmosphere atmosphere;
     private Wind wind;
-    private Coordinates coordinates;
+
 
     public Item getItem() {
         return item;
@@ -31,9 +32,7 @@ public class Channel implements JSONPopulator {
         return wind;
     }
 
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
+
 
     @Override
     public void populate(JSONObject data) {
@@ -49,7 +48,21 @@ public class Channel implements JSONPopulator {
         wind = new Wind();
         wind.populate(data.optJSONObject("wind"));
 
-        coordinates = new Coordinates();
-        coordinates.populate(data.optJSONObject("item"));
+
+    }
+
+    @Override
+    public JSONObject toJSON(){
+        JSONObject data = new JSONObject();
+
+        try {
+            data.put("atmosphere",atmosphere.toJSON());
+            data.put("wind",wind.toJSON());
+            data.put("units",units.toJSON());
+            data.put("item",item.toJSON());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 }
