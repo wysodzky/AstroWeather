@@ -1,7 +1,10 @@
 package com.example.bartek.astroweather;
 
 import android.app.TaskStackBuilder;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,10 +14,13 @@ import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.bartek.astroweather.service.NetworkChangeReceiver;
+
 
 public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabLayout tabLayout;
+    BroadcastReceiver networkChangeReceiver;
 
     void configureToolbar(){
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -66,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         super.onCreate(savedInstanceState);
+        networkChangeReceiver = new NetworkChangeReceiver();
+        registerReceiver(networkChangeReceiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
         setContentView(R.layout.activity_main);
 
 
@@ -96,5 +104,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        unregisterReceiver(networkChangeReceiver);
+    }
 
 }
