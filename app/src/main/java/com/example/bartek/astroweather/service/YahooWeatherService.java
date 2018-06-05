@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.renderscript.ScriptGroup;
+import android.widget.Toast;
 
 import com.example.bartek.astroweather.data.Channel;
 import com.example.bartek.astroweather.fragments.WeatherFragment;
@@ -31,7 +32,6 @@ public class YahooWeatherService {
 
     private WeatherServiceCallback callback;
     private static String location = "Lodz";
-
 
 
     private Exception error;
@@ -103,13 +103,21 @@ public class YahooWeatherService {
                     JSONObject data = new JSONObject(s);
                     JSONObject queryResults = data.optJSONObject("query");
                     int count = queryResults.optInt("count");
+
+
                     if (count == 0) {
                         callback.serviceFailure(new LocationWeatherException("No weather information found" + location));
                         return;
                     }
                     Channel channel = new Channel();
-                    channel.populate(queryResults.optJSONObject("results").optJSONObject("channel"));
-                    callback.serviceSuccess(channel);
+                    JSONObject test = queryResults.optJSONObject("results").optJSONObject("channel");
+                    if(test.isNull("title") || !test.has("title")){
+                        callback.serviceFailure(new LocationWeatherException("No weather information found for: " + location));
+                    }else {
+                        channel.populate(queryResults.optJSONObject("results").optJSONObject("channel"));
+                        callback.serviceSuccess(channel);
+                    }
+
                 } catch (JSONException e) {
                     callback.serviceFailure(e);
                 }

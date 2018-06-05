@@ -127,5 +127,6 @@ public class WeatherFragment extends Fragment implements AstroUpdate, WeatherSer
     @Override
     public void serviceFailure(Exception exception) {
         weatherCacheService.load(this);
+
     }
 }

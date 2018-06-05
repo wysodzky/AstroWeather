@@ -1,5 +1,6 @@
 package com.example.bartek.astroweather;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -54,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         setContentView(R.layout.activity_settings);
         manager = Manager.getInstance();
+
 
         initSpinner();
         initValues();
@@ -235,24 +237,56 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    public void addLocation(View view){
-        final FavouriteLocation favouriteLocation = new FavouriteLocation(location.getText().toString());
 
+
+
+    public void addLocation(View view){
+
+
+
+
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        addNewLocation();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+
+    }
+
+
+
+    void addNewLocation(){
+        final FavouriteLocation favouriteLocation = new FavouriteLocation(location.getText().toString());
         if(adapter.checkIfExists(favouriteLocation.getLocation())){
             Toast.makeText(this,"This location is in database",Toast.LENGTH_SHORT).show();
         }else {
 
-                            realm.beginTransaction();
-                            FavouriteLocation itemInDb = realm.createObject(FavouriteLocation.class);
-                            itemInDb.setLocation(favouriteLocation.getLocation());
-                            realm.commitTransaction();
-                            showToastAdded(favouriteLocation);
+            realm.beginTransaction();
+            FavouriteLocation itemInDb = realm.createObject(FavouriteLocation.class);
+            itemInDb.setLocation(favouriteLocation.getLocation());
+            realm.commitTransaction();
+            showToastAdded(favouriteLocation);
 
-                            initSpinnerLocation();
+            initSpinnerLocation();
 
 
         }
     }
+
+
 
     void showToastAdded(FavouriteLocation favouriteLocation){
         Toast.makeText(this, "Added Location " + favouriteLocation.getLocation(), Toast.LENGTH_SHORT).show();

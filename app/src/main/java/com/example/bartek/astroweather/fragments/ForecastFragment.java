@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bartek.astroweather.AstroUpdate;
 import com.example.bartek.astroweather.Manager;
@@ -194,5 +195,6 @@ public class ForecastFragment extends Fragment implements AstroUpdate,WeatherSer
     @Override
     public void serviceFailure(Exception exception) {
         weatherCacheService.load(this);
+
     }
 }
