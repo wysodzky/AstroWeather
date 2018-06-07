@@ -261,7 +261,7 @@ public class SettingsActivity extends AppCompatActivity {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+        builder.setMessage("Do you really want to add \""+location.getText().toString()+"\" ?. If  name of the city is wrong the app will find the most possible result or nothing.").setPositiveButton("Yes", dialogClickListener)
                 .setNegativeButton("No", dialogClickListener).show();
 
     }
